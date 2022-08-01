@@ -6,7 +6,7 @@ export const Help = ({ setIsOn }) => {
       <Card>
         <Card.Body>
           GENERAL<br></br>
-          The purpose of this app is to help you memorize things, which could
+          The purpose of this app is to improve memorization, which could
           help you study for exams, or just exercise your memory. The app also
           has a time counter to help you improve your efficiency.
           <br></br> <br></br>
