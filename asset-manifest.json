@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/memo-quiz/static/css/main.aa90c490.css",
-    "main.js": "/memo-quiz/static/js/main.dd04fded.js",
+    "main.js": "/memo-quiz/static/js/main.11a6b3e8.js",
     "index.html": "/memo-quiz/index.html",
     "main.aa90c490.css.map": "/memo-quiz/static/css/main.aa90c490.css.map",
-    "main.dd04fded.js.map": "/memo-quiz/static/js/main.dd04fded.js.map"
+    "main.11a6b3e8.js.map": "/memo-quiz/static/js/main.11a6b3e8.js.map"
   },
   "entrypoints": [
     "static/css/main.aa90c490.css",
-    "static/js/main.dd04fded.js"
+    "static/js/main.11a6b3e8.js"
   ]
 }
