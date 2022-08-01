@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { Editor } from "./editor";
+import { Results } from "./results";
 
 export const Quiz = ({ items }) => {
   const totalLength = items.length;
@@ -10,10 +11,9 @@ export const Quiz = ({ items }) => {
   const [finalItems, setFinalItems] = useState(items);
   const [userAnswer, setUserAnswer] = useState({ ops: [{ insert: "" }] });
   const [EditUserAnswerId, setEditUserAnswerId] = useState("");
-  const time_seconds = 60;
 
   const [seconds, setSeconds] = useState(0);
-  const [start, setStart] = useState(false);
+  const [end, setEnd] = useState(false);
 
   useEffect(() => {
     let newArr = [...finalItems];
@@ -50,75 +50,83 @@ export const Quiz = ({ items }) => {
   }, [questionNumber]);
   return (
     <>
-      <center className="font-link">{`${Math.floor(seconds / 60)
-        .toString()
-        .padStart(2, "0")}:${(seconds % 60)
-        .toString()
-        .padStart(2, "0")}`}</center>
-      <br></br>
-      <Card>
-        <Card.Header>
-          <center className="font-link">QUESTION #{questionNumber + 1}</center>
-          <Editor
-            inactive={true}
-            value={items[questionNumber].question.ops}
-          ></Editor>
-        </Card.Header>
-        <Card.Body>
-          <center className="font-link">YOUR ANSWER</center>
-          <div
-            onClick={() => {
-              setEditUserAnswerId(items[questionNumber].id);
-            }}
-          >
-            <Editor
-              inactive={false}
-              value={userAnswer}
-              id={`userA-${questionNumber}`}
-              setValue={setUserAnswer}
-            ></Editor>
-          </div>
-        </Card.Body>
-        <Card.Footer>
-          <center>
-            {questionNumber > 0 && (
-              <Button
-                style={{ margin: "2mm" }}
+      {end === false && (
+        <>
+          <center className="font-link">{`${Math.floor(seconds / 60)
+            .toString()
+            .padStart(2, "0")}:${(seconds % 60)
+            .toString()
+            .padStart(2, "0")}`}</center>
+          <br></br>
+          <Card>
+            <Card.Header>
+              <center className="font-link">
+                QUESTION #{questionNumber + 1}
+              </center>
+              <Editor
+                inactive={true}
+                value={items[questionNumber].question.ops}
+              ></Editor>
+            </Card.Header>
+            <Card.Body>
+              <center className="font-link">YOUR ANSWER</center>
+              <div
                 onClick={() => {
-                  setEditUserAnswerId(items[questionNumber - 1].id);
-                  setQuestionNumber((questionNumber) => questionNumber - 1);
+                  setEditUserAnswerId(items[questionNumber].id);
                 }}
               >
-                <div className="font-link">PREVIOUS QUESTION</div>
-              </Button>
-            )}
-            {questionNumber !== totalLength - 1 && (
-              <Button
-                style={{ margin: "2mm" }}
-                onClick={() => {
-                  setEditUserAnswerId(items[questionNumber + 1].id);
-                  setQuestionNumber((questionNumber) => questionNumber + 1);
-                }}
-              >
-                <div className="font-link">NEXT QUESTION</div>
-              </Button>
-            )}
-            {questionNumber === totalLength - 1 && (
-              <Button
-                style={{ margin: "2mm" }}
-                variant="success"
-                onClick={() => {
-                  let newArr = [...finalItems];
-                  newArr.push({ id: "time", seconds: seconds });
-                  setFinalItems(newArr);
-                }}
-              >
-                <div className="font-link">SUBMIT ANSWERS</div>
-              </Button>
-            )}
-          </center>
-        </Card.Footer>
-      </Card>
+                <Editor
+                  inactive={false}
+                  value={userAnswer}
+                  id={`userA-${questionNumber}`}
+                  setValue={setUserAnswer}
+                ></Editor>
+              </div>
+            </Card.Body>
+            <Card.Footer>
+              <center>
+                {questionNumber > 0 && (
+                  <Button
+                    style={{ margin: "2mm" }}
+                    onClick={() => {
+                      setEditUserAnswerId(items[questionNumber - 1].id);
+                      setQuestionNumber((questionNumber) => questionNumber - 1);
+                    }}
+                  >
+                    <div className="font-link">PREVIOUS QUESTION</div>
+                  </Button>
+                )}
+                {questionNumber !== totalLength - 1 && (
+                  <Button
+                    style={{ margin: "2mm" }}
+                    onClick={() => {
+                      setEditUserAnswerId(items[questionNumber + 1].id);
+                      setQuestionNumber((questionNumber) => questionNumber + 1);
+                    }}
+                  >
+                    <div className="font-link">NEXT QUESTION</div>
+                  </Button>
+                )}
+                {questionNumber === totalLength - 1 && (
+                  <Button
+                    style={{ margin: "2mm" }}
+                    variant="success"
+                    onClick={() => {
+                      let newArr = [...finalItems];
+                      newArr.push({ id: "time", seconds: seconds });
+                      setFinalItems(newArr);
+                      setEnd(true);
+                    }}
+                  >
+                    <div className="font-link">SUBMIT ANSWERS</div>
+                  </Button>
+                )}
+              </center>
+            </Card.Footer>
+          </Card>
+        </>
+      )}
+      {end === true && <Results fromHome={false} items={finalItems} />}
     </>
   );
 };

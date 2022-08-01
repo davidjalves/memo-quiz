@@ -1,18 +1,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "react-bootstrap";
-import { useLocation, useNavigate } from "react-router-dom";
-import { InsertManual } from "./insertManual";
-import { Quiz } from "./quiz";
+import { Results } from "./results";
 
-export const InsertAuto = ({ isOn, setIsOn }) => {
-  const location = useLocation();
+export const InsertResults = ({ setIsOn }) => {
   const [filename, setFilename] = useState("");
   const [error, setError] = useState(false);
   const [selectedFile, setSelectedFile] = useState();
   const [items, setItems] = useState([]);
-  const [quiz, setQuiz] = useState(false);
-  const [manual, setManual] = useState(false);
+  const [results, setResults] = useState(false);
+
   const changeHandler = (event) => {
     if (event.target.files[0].type !== "application/json") {
       setError(true);
@@ -31,15 +28,13 @@ export const InsertAuto = ({ isOn, setIsOn }) => {
     fileReader.onload = (e) => {
       const content = e.target.result;
       console.log(JSON.parse(content));
-      //setFileContent(JSON.parse(content));
       setItems(JSON.parse(content));
-      setQuiz(true);
+      setResults(true);
     };
   };
-
   return (
     <center>
-      {quiz === false && manual === false && (
+      {results === false && (
         <>
           <Button
             variant="info"
@@ -50,7 +45,6 @@ export const InsertAuto = ({ isOn, setIsOn }) => {
           >
             <div className="font-link">GO BACK</div>
           </Button>
-          {/* </a> */}
           <Button as={"label"} htmlFor="upload-file">
             <div className="font-link">CHOOSE FILE</div>
           </Button>{" "}
@@ -69,38 +63,19 @@ export const InsertAuto = ({ isOn, setIsOn }) => {
         </>
       )}
 
-      {error === false &&
-        filename !== "" &&
-        quiz === false &&
-        manual === false && (
-          <div>
-            <br></br>
-            <Button
-              style={{ margin: "2mm" }}
-              onClick={() => {
-                const fileReader = new FileReader();
-
-                fileReader.readAsText(selectedFile, "UTF-8");
-                fileReader.onload = (e) => {
-                  const content = e.target.result;
-                  setItems(JSON.parse(content));
-                  setManual(true);
-                };
-              }}
-            >
-              <div className="font-link">EDIT QUESTIONS/ANSWERS</div>
-            </Button>
-            <Button
-              variant="success"
-              style={{ margin: "2mm" }}
-              onClick={handleSubmission}
-            >
-              <div className="font-link">START ANSWERING</div>
-            </Button>
-          </div>
-        )}
-      {quiz === true && <Quiz items={items} />}
-      {manual === true && <InsertManual setIsOn={setManual} items={items} />}
+      {error === false && filename !== "" && results === false && (
+        <div>
+          <br></br>
+          <Button
+            variant="success"
+            style={{ marginTop: "2mm" }}
+            onClick={handleSubmission}
+          >
+            <div className="font-link">SHOW RESULTS</div>
+          </Button>
+        </div>
+      )}
+      {results === true && <Results fromHome={true} items={items} />}
     </center>
   );
 };
