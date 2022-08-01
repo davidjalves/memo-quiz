@@ -45,7 +45,6 @@ export const InsertManual = ({ setIsOn, items }) => {
   tempLink.setAttribute("download", `MemoQuiz_questions_answers_${s}.json`);
   return (
     <center>
-      {console.log(items)}
       <Accordion>
         {accordionItems.length > 0 &&
           quiz === false &&

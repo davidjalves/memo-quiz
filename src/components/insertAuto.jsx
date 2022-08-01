@@ -30,8 +30,7 @@ export const InsertAuto = ({ isOn, setIsOn }) => {
     fileReader.readAsText(selectedFile, "UTF-8");
     fileReader.onload = (e) => {
       const content = e.target.result;
-      console.log(JSON.parse(content));
-      //setFileContent(JSON.parse(content));
+     
       setItems(JSON.parse(content));
       setQuiz(true);
     };

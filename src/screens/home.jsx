@@ -2,10 +2,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable array-callback-return */
 
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import { Card, Button } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
 import { Help } from "../components/help";
 import { InsertAuto } from "../components/insertAuto";
 import { InsertManual } from "../components/insertManual";
@@ -16,11 +15,6 @@ export const Home = () => {
   const [insertAuto, setInsertAuto] = useState(false);
   const [insertResults, setInsertResults] = useState(false);
   const [help, setHelp] = useState(false);
-  const location = useLocation();
-
-  useEffect(() => {
-    console.log(location);
-  }, []);
 
   return (
     <>

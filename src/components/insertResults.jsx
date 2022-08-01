@@ -27,7 +27,6 @@ export const InsertResults = ({ setIsOn }) => {
     fileReader.readAsText(selectedFile, "UTF-8");
     fileReader.onload = (e) => {
       const content = e.target.result;
-      console.log(JSON.parse(content));
       setItems(JSON.parse(content));
       setResults(true);
     };

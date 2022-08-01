@@ -17,7 +17,6 @@ export const Quiz = ({ items }) => {
 
   useEffect(() => {
     let newArr = [...finalItems];
-    console.log(EditUserAnswerId);
     newArr.map((t) => {
       if (t.id === EditUserAnswerId) {
         t.userAnswer = userAnswer;
@@ -35,9 +34,6 @@ export const Quiz = ({ items }) => {
     }
   }, [seconds]);
 
-  useEffect(() => {
-    console.log(finalItems);
-  }, [finalItems]);
   useEffect(() => {
     if (!finalItems[questionNumber].userAnswer) {
       setUserAnswer({ ops: [{ insert: "" }] });
