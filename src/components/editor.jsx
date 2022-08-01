@@ -2,7 +2,7 @@ import { useState } from "react";
 import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import EditorToolbar, { modules, formats } from "../components/editorToolBar";
-export const Editor = ({ value, setValue, id }) => {
+export const Editor = ({ value, setValue, id, inactive }) => {
   const [events, setEvents] = useState([]);
   const [readOnly, setReadyOnly] = useState(false);
   const [enabled, setEnabled] = useState(true);
@@ -11,6 +11,9 @@ export const Editor = ({ value, setValue, id }) => {
   // Modules object for setting up the Quill editor
   const modules = {
     toolbar: `#${id}`,
+  };
+  const modulesNoToolbar = {
+    toolbar: false,
   };
 
   // Formats objects for setting up the Quill editor
@@ -66,20 +69,32 @@ export const Editor = ({ value, setValue, id }) => {
   };
   return (
     <div className="editor">
-      <EditorToolbar toolbarId={id} />
-      <ReactQuill
-        readOnly={readOnly}
-        onChangeSelection={onEditorChangeSelection}
-        onFocus={onEditorFocus}
-        onBlur={onEditorBlur}
-        theme="snow"
-        placeholder="Insert the text here"
-        value={value}
-        onChange={onEditorChange}
-        //preserveWhitespace={true}
-        modules={modules}
-        formats={formats}
-      />
+      {inactive === false && (
+        <>
+          <EditorToolbar toolbarId={id} />
+          <ReactQuill
+            readOnly={false}
+            onChangeSelection={onEditorChangeSelection}
+            onFocus={onEditorFocus}
+            onBlur={onEditorBlur}
+            theme="snow"
+            placeholder="Insert the text here"
+            value={value}
+            onChange={onEditorChange}
+            //preserveWhitespace={true}
+            modules={modules}
+            formats={formats}
+          />
+        </>
+      )}
+      {inactive === true && (
+        <ReactQuill
+          readOnly={true}
+          theme="snow"
+          value={value}
+          modules={modulesNoToolbar}
+        />
+      )}
     </div>
   );
 };
