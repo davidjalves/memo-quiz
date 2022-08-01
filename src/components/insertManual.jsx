@@ -3,6 +3,7 @@
 /* eslint-disable array-callback-return */
 import { useEffect, useState } from "react";
 import { Accordion, Button } from "react-bootstrap";
+import { dateFormat } from "../utils/dateFormat";
 import { Editor } from "./editor";
 import { Quiz } from "./quiz";
 
@@ -26,23 +27,14 @@ export const InsertManual = ({ setIsOn, items }) => {
     });
     setAccordionItems(newArr);
   }, [question, correctAnswer]);
-
-  function join(t, a, s) {
-    function format(m) {
-      let f = new Intl.DateTimeFormat("en", m);
-      return f.format(t);
-    }
-    return a.map(format).join(s);
-  }
-
-  let a = [{ day: "numeric" }, { month: "short" }, { year: "numeric" }];
-  let s = join(new Date(), a, "-");
-
   var data = new Blob([JSON.stringify(accordionItems)], { type: "text/json" });
   var URL = window.URL.createObjectURL(data);
   const tempLink = document.createElement("a");
   tempLink.href = URL;
-  tempLink.setAttribute("download", `MemoQuiz_questions_answers_${s}.json`);
+  tempLink.setAttribute(
+    "download",
+    `MemoQuiz_questions_answers_${dateFormat()}.json`
+  );
   return (
     <center>
       <Accordion>

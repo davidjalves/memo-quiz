@@ -1,27 +1,18 @@
 /* eslint-disable array-callback-return */
 import { useState } from "react";
 import { Accordion, Button } from "react-bootstrap";
+import { dateFormat } from "../utils/dateFormat";
 import { Editor } from "./editor";
 import { Quiz } from "./quiz";
 export const Results = ({ items, fromHome }) => {
   const [restartItems, setRestartItems] = useState([]);
   const [restart, setRestart] = useState(false);
-  function join(t, a, s) {
-    function format(m) {
-      let f = new Intl.DateTimeFormat("en", m);
-      return f.format(t);
-    }
-    return a.map(format).join(s);
-  }
-
-  let a = [{ day: "numeric" }, { month: "short" }, { year: "numeric" }];
-  let s = join(new Date(), a, "-");
 
   var data = new Blob([JSON.stringify(items)], { type: "text/json" });
   var URL = window.URL.createObjectURL(data);
   const tempLink = document.createElement("a");
   tempLink.href = URL;
-  tempLink.setAttribute("download", `MemoQuiz_results_${s}.json`);
+  tempLink.setAttribute("download", `MemoQuiz_results_${dateFormat()}.json`);
   return (
     <>
       {restart === false && (

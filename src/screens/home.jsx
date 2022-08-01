@@ -18,7 +18,7 @@ export const Home = () => {
 
   return (
     <>
-      <Card>
+      <Card style={{borderColor:"transparent"}}>
         <center style={{ fontSize: 40 }} className="font-link">
           <a
             href=""
