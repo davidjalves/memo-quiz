@@ -30,7 +30,7 @@ export const InsertAuto = ({ isOn, setIsOn }) => {
     fileReader.readAsText(selectedFile, "UTF-8");
     fileReader.onload = (e) => {
       const content = e.target.result;
-     
+
       setItems(JSON.parse(content));
       setQuiz(true);
     };
@@ -38,6 +38,9 @@ export const InsertAuto = ({ isOn, setIsOn }) => {
 
   return (
     <center>
+      <div className="font-link">IMPORT QUESTIONS FROM FILE</div>
+      <br></br>
+
       {quiz === false && manual === false && (
         <>
           <Button

@@ -33,6 +33,9 @@ export const InsertResults = ({ setIsOn }) => {
   };
   return (
     <center>
+      <div className="font-link">IMPORT RESULTS FROM FILE</div>
+      <br></br>
+
       {results === false && (
         <>
           <Button

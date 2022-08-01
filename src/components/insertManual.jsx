@@ -37,6 +37,7 @@ export const InsertManual = ({ setIsOn, items }) => {
   );
   return (
     <center>
+        <div className="font-link">ADD QUESTIONS MANUALLY</div><br></br>
       <Accordion>
         {accordionItems.length > 0 &&
           quiz === false &&

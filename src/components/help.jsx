@@ -10,13 +10,13 @@ export const Help = ({ setIsOn }) => {
           help you study for exams, or just exercise your memory. The app also
           has a time counter to help you improve your efficiency.
           <br></br> <br></br>
-          ADD NEW QUESTIONS/ANSWERS MANUALLY<br></br>
+          ADD NEW QUESTIONS MANUALLY<br></br>
           <h6>
             With this option you can add questions and correct answers one by
             one, and then you can start answering or save them to answer later.
           </h6>
           <br></br>
-          IMPORT QUESTIONS/ANSWERS FROM FILE<br></br>
+          IMPORT QUESTIONS FROM FILE<br></br>
           <h6>
             With this option you can import the questions and answers that you
             previously created and answer or edit them.
