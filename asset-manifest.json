@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/memo-quiz/static/css/main.aa90c490.css",
+    "main.js": "/memo-quiz/static/js/main.eb3b1470.js",
+    "index.html": "/memo-quiz/index.html",
+    "main.aa90c490.css.map": "/memo-quiz/static/css/main.aa90c490.css.map",
+    "main.eb3b1470.js.map": "/memo-quiz/static/js/main.eb3b1470.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.aa90c490.css",
+    "static/js/main.eb3b1470.js"
+  ]
+}
