@@ -1,12 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "react-bootstrap";
-import { useLocation, useNavigate } from "react-router-dom";
 import { InsertManual } from "./insertManual";
 import { Quiz } from "./quiz";
 
 export const InsertAuto = ({ isOn, setIsOn }) => {
-  const location = useLocation();
   const [filename, setFilename] = useState("");
   const [error, setError] = useState(false);
   const [selectedFile, setSelectedFile] = useState();

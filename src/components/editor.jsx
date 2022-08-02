@@ -1,16 +1,37 @@
 import { useState } from "react";
-import ReactQuill, { Quill } from "react-quill";
+import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import EditorToolbar, { modules, formats } from "../components/editorToolBar";
+
+//import EditorToolbar, { modules, formats } from "../components/editorToolBar";
 export const Editor = ({ value, setValue, id, inactive }) => {
   const [events, setEvents] = useState([]);
-  const [readOnly, setReadyOnly] = useState(false);
-  const [enabled, setEnabled] = useState(true);
+  //const [readOnly, setReadyOnly] = useState(false);
+  //const [enabled, setEnabled] = useState(true);
   const [selection, setSelection] = useState("");
+
+
+  var toolbarOptions = [
+    ["bold", "italic", "underline", "strike","image","video","link"], // toggled buttons
+    ["blockquote", "code-block"],
+
+    [{ header: 1 }, { header: 2 }], // custom button values
+    [{ list: "ordered" }, { list: "bullet" }],
+    [{ script: "sub" }, { script: "super" }], // superscript/subscript
+    [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
+    [{ direction: "rtl" }], // text direction
+
+    [{ size: [false, "large", "huge"] }], // custom dropdown
+    [{ header: [1, 2, 3, 4, 5, 6, false] }],
+
+    [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+    [{ align: [] }],
+
+    ["clean"], // remove formatting button
+  ];
 
   // Modules object for setting up the Quill editor
   const modules = {
-    toolbar: `#${id}`,
+    toolbar: toolbarOptions,
   };
   const modulesNoToolbar = {
     toolbar: false,
@@ -71,7 +92,7 @@ export const Editor = ({ value, setValue, id, inactive }) => {
     <div className="editor">
       {inactive === false && (
         <>
-          <EditorToolbar toolbarId={id} />
+          {/* <EditorToolbar toolbarId={id} /> */}
           <ReactQuill
             readOnly={false}
             onChangeSelection={onEditorChangeSelection}

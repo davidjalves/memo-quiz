@@ -31,12 +31,11 @@ div.public-DraftEditor-content {
   height: 100%;
 } */
 
-
 .ql-editor {
-  white-space: normal!important;
+  white-space: normal !important;
   min-height: 30vh;
-  margin: 0; 
-  }
+  margin: 0;
+}
 /* Set content for font-families */
 .ql-font-arial,
 .ql-font span[data-value="arial"]::before {
