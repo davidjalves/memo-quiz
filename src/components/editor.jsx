@@ -2,11 +2,9 @@ import { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-//import EditorToolbar, { modules, formats } from "../components/editorToolBar";
 export const Editor = ({ value, setValue, id, inactive }) => {
   const [events, setEvents] = useState([]);
-  //const [readOnly, setReadyOnly] = useState(false);
-  //const [enabled, setEnabled] = useState(true);
+
   const [selection, setSelection] = useState("");
 
 
@@ -92,7 +90,7 @@ export const Editor = ({ value, setValue, id, inactive }) => {
     <div className="editor">
       {inactive === false && (
         <>
-          {/* <EditorToolbar toolbarId={id} /> */}
+
           <ReactQuill
             readOnly={false}
             onChangeSelection={onEditorChangeSelection}
